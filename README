@@ -1,0 +1,43 @@
+snot - simple notification daemon
+==================================
+
+snot is a small, simple notification daemon for Wayland compositors implementing the 
+layer-shell protocol.
+
+Requirements
+-----------
+* wayland
+* wlroots
+* cairo
+* pango
+* dbus
+
+- if you are not on systemd, you might need to manually start a dbus user session:
+
+Start D-Bus session daemon:
+---------------------------
+dbus-daemon --session --address="unix:path=$XDG_RUNTIME_DIR/bus" --nofork --print-address &
+
+Export D-Bus session address for other applications:
+----------------------------------------------------
+export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus
+
+
+Installation
+-----------
+Edit config.mk to match your local setup (snot is installed into
+/usr/local by default).
+
+Afterwards enter the following command to build and install snot
+(if necessary as root):
+
+    make clean install
+
+Configuration
+------------
+The configuration of snot is done by creating a custom config.h
+and (re)compiling the source code.
+
+    cp config.def.h config.h
+    $EDITOR config.h
+    make clean snot
